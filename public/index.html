@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="gapi"></div>
+    <div id="papi"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    fetch("/papi", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        "body": JSON.stringify({a:1})
+    })
+        .then((response) => response.json())
+        .then((d) => {
+            $("#papi").html(JSON.stringify(d))
+        })
+    fetch("/gapi?a=1", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+        .then((response) => response.json())
+        .then((d) => {
+            $("#gapi").html(JSON.stringify(d))
+        })
+
+</script>
+
+</html>
